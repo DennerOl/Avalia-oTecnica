@@ -1,0 +1,149 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: "dener"
+      changes:
+        - createTable:
+            tableName: processo
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: numero
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: reu
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cpf
+                  type: varchar(11)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: processo_reu
+            columns:
+              - column:
+                  name: processo_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reu_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: "2"
+      author: "dener"
+      changes:
+        - insert:
+            tableName: processo
+            columns:
+              - column:
+                  name: numero
+                  value: "123456"
+              - column:
+                  name: numero
+                  value: "789101"
+
+        - insert:
+            tableName: reu
+            columns:
+              - column:
+                  name: nome
+                  value: "João Silva"
+              - column:
+                  name: cpf
+                  value: "12345678901"
+
+        - insert:
+            tableName: reu
+            columns:
+              - column:
+                  name: nome
+                  value: "Maria Oliveira"
+              - column:
+                  name: cpf
+                  value: "98765432100"
+
+        - insert:
+            tableName: reu
+            columns:
+              - column:
+                  name: nome
+                  value: "Carlos Pereira"
+              - column:
+                  name: cpf
+                  value: "19283746509"
+
+        - insert:
+            tableName: reu
+            columns:
+              - column:
+                  name: nome
+                  value: "Ana Souza"
+              - column:
+                  name: cpf
+                  value: "56473829101"
+
+        - insert:
+            tableName: processo_reu
+            columns:
+              - column:
+                  name: processo_id
+                  valueNumeric: 1
+              - column:
+                  name: reu_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: processo_reu
+            columns:
+              - column:
+                  name: processo_id
+                  valueNumeric: 1
+              - column:
+                  name: reu_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: processo_reu
+            columns:
+              - column:
+                  name: processo_id
+                  valueNumeric: 2
+              - column:
+                  name: reu_id
+                  valueNumeric: 3
+
+        - insert:
+            tableName: processo_reu
+            columns:
+              - column:
+                  name: processo_id
+                  valueNumeric: 2
+              - column:
+                  name: reu_id
+                  valueNumeric: 4
