@@ -2,28 +2,28 @@ package com.example.ProcessosJuridicos.dto;
 
 import org.springframework.beans.BeanUtils;
 
-import com.example.ProcessosJuridicos.model.Processo;
 import com.example.ProcessosJuridicos.model.Reu;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReuDTO {
 
-  @NotBlank(message = "Nome do réu é obrigatório")
+  private Long id;
   private String nome;
+  private String cpf;
 
-  private Long processoId;
 
-  public ReuDTO(Reu entity) {
+  
+	public ReuDTO(Reu entity) {
+		BeanUtils.copyProperties(entity,this);
+	}
 
-    BeanUtils.copyProperties(entity, this);
 
-  }
 }

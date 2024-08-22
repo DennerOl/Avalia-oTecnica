@@ -1,31 +1,37 @@
 package com.example.ProcessosJuridicos.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Reu {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false)
   private String nome;
 
-  @ManyToOne
-  @JoinColumn(name = "processo_id", nullable = false)
-  private Processo processo;
+  @Column(unique = true)
+  private String cpf;
+
+
+  @ManyToMany(mappedBy = "reus")
+	private Set<Processo> processos = new HashSet<>();
 
 }

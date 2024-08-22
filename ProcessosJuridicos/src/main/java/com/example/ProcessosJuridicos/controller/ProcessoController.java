@@ -3,7 +3,6 @@ package com.example.ProcessosJuridicos.controller;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,37 +14,36 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.ProcessosJuridicos.dto.ProcessoDTO;
-import com.example.ProcessosJuridicos.model.Processo;
 import com.example.ProcessosJuridicos.service.ProcessoService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/processos")
+@RequestMapping(value = "/processos")
 public class ProcessoController {
 
   @Autowired
   private ProcessoService service;
 
-  @PostMapping()
-  public ResponseEntity<ProcessoDTO> insert(@RequestBody @Valid ProcessoDTO dto) {
-    dto = service.saveProcesso(dto);
-
+  @PostMapping
+  public ResponseEntity<ProcessoDTO> inserir(@Valid @RequestBody ProcessoDTO dto) {
+    dto = service.insert(dto);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-        .buildAndExpand(dto.getNumero()).toUri();
+        .buildAndExpand(dto.getId()).toUri();
     return ResponseEntity.created(uri).body(dto);
   }
 
-  @GetMapping("/{numeroProcesso}")
-  public ResponseEntity<ProcessoDTO> getProcessByNumber(@PathVariable String numeroProcesso) {
+  @GetMapping(value = "/{numero}")
+  public ResponseEntity<ProcessoDTO> getProcessByNumber(@PathVariable String numero) {
 
-    ProcessoDTO dto = service.getProcessoByNumero(numeroProcesso);
+    ProcessoDTO dto = service.getProcessoByNumero(numero);
     return ResponseEntity.ok(dto);
   }
 
-  @DeleteMapping("/{numeroProcesso}")
-  public ResponseEntity<Void> deleteProcesso(@PathVariable String numeroProcesso) {
-    service.deleteProcesso(numeroProcesso);
+  @DeleteMapping(value = "/{numero}")
+  public ResponseEntity<Void> delete(@PathVariable String numero) {
+    service.delete(numero);
     return ResponseEntity.noContent().build();
   }
+
 }

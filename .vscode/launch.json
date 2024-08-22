@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-ProcessosJuridicosApplication<ProcessosJuridicos>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.example.ProcessosJuridicos.ProcessosJuridicosApplication",
+      "projectName": "ProcessosJuridicos",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
