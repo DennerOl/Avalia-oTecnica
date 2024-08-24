@@ -26,25 +26,27 @@ public class ProcessoDTO {
   @NotBlank(message = "Número do processo é obrigatório")
   private String numero;
 
+  public ProcessoDTO(Long id, String numero) {
+    this.id = id;
+    this.numero = numero;
+  }
+
   public ProcessoDTO(Processo entidade) {
     BeanUtils.copyProperties(entidade, this);
 
     for (Reu r : entidade.getReus()) {
-			reus.add(new ReuDTO(r));
-		}
+      reus.add(new ReuDTO(r));
+    }
   }
 
-  @NotEmpty(message = "Deve conter pelo menos uma categoria")
-	  private Set<ReuDTO> reus = new HashSet<>();
-
+  @NotEmpty(message = "Deve conter pelo menos um Reu")
+  private Set<ReuDTO> reus = new HashSet<>();
 
   public Set<ReuDTO> getReus() {
     return reus;
-}
+  }
 
-public void setReus(Set<ReuDTO> reus) {
+  public void setReus(Set<ReuDTO> reus) {
     this.reus = reus;
-}
-
-
+  }
 }

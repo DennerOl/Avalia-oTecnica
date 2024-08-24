@@ -28,7 +28,7 @@ public class ProcessoController {
   @PostMapping
   public ResponseEntity<ProcessoDTO> inserir(@Valid @RequestBody ProcessoDTO dto) {
     dto = service.insert(dto);
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{numero}")
         .buildAndExpand(dto.getId()).toUri();
     return ResponseEntity.created(uri).body(dto);
   }

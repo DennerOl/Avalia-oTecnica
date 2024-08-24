@@ -30,8 +30,13 @@ public class Reu {
   @Column(unique = true)
   private String cpf;
 
+  public Reu(Long id, String nome, String cpf) {
+    this.id = id;
+    this.nome = nome;
+    this.cpf = cpf;
+  }
 
   @ManyToMany(mappedBy = "reus")
-	private Set<Processo> processos = new HashSet<>();
+  private Set<Processo> processos = new HashSet<>();
 
 }
